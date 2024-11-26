@@ -1,0 +1,100 @@
+﻿<Window x:Class="CelltechFinal.Views.Menu.MenuPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Menu Principal" Height="720" Width="1280"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Barra Superior -->
+        <Grid Background="#0D6EFD">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Logo y Nombre -->
+            <StackPanel Grid.Column="0" 
+                        Orientation="Horizontal" 
+                        Margin="20,0">
+                <TextBlock Text="CELLTECH"
+                         Foreground="White"
+                         FontSize="24"
+                         FontWeight="Bold"
+                         VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Usuario y Cerrar Sesión -->
+            <StackPanel Grid.Column="2" 
+                        Orientation="Horizontal" 
+                        Margin="20,0">
+                <TextBlock Text="{Binding NombreUsuario}"
+                         Foreground="White"
+                         VerticalAlignment="Center"
+                         Margin="0,0,20,0"/>
+                <Button Content="Cerrar Sesión"
+                        Command="{Binding CerrarSesionCommand}"
+                        Style="{StaticResource WindowButtonStyle}"
+                        Foreground="White"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Área Principal -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Título -->
+            <TextBlock Text="Menú Principal"
+                     FontSize="24"
+                     FontWeight="Bold"
+                     Margin="0,0,0,20"/>
+
+            <!-- Módulos -->
+            <WrapPanel Grid.Row="1" 
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Center">
+
+                <!-- Módulo Inventario -->
+                <Button Width="200" 
+                        Height="200" 
+                        Margin="20"
+                        Command="{Binding AbrirInventarioCommand}"
+                        Style="{StaticResource MenuButtonStyle}">
+                    <StackPanel>
+                        <TextBlock Text="🏪" 
+                                 FontSize="48" 
+                                 HorizontalAlignment="Center"/>
+                        <TextBlock Text="Inventario" 
+                                 FontSize="20"
+                                 HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Módulo Ventas -->
+                <Button Width="200" 
+                        Height="200" 
+                        Margin="20"
+                        Command="{Binding AbrirVentasCommand}"
+                        Style="{StaticResource MenuButtonStyle}">
+                    <StackPanel>
+                        <TextBlock Text="💰" 
+                                 FontSize="48" 
+                                 HorizontalAlignment="Center"/>
+                        <TextBlock Text="Ventas" 
+                                 FontSize="20"
+                                 HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</Window>

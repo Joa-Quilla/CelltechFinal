@@ -1,0 +1,109 @@
+﻿<Window x:Class="CelltechFinal.Views.Login.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Login" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+
+    <Border Background="#ffffff"
+            CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Panel Izquierdo - Imagen/Logo -->
+            <Border Grid.Column="0"
+                    Background="#0D6EFD"
+                    CornerRadius="20,0,0,20">
+                <Grid>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="CELLTECH"
+                                 Foreground="White"
+                                 FontSize="36"
+                                 FontWeight="Bold"
+                                 HorizontalAlignment="Center"/>
+                        <TextBlock Text="Sistema de Ventas"
+                                 Foreground="White"
+                                 FontSize="16"
+                                 HorizontalAlignment="Center"
+                                 Margin="0,10,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Panel Derecho - Login -->
+            <Grid Grid.Column="1"
+                  Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Botón Cerrar -->
+                <Button Content="✕"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Width="30"
+                        Height="30"
+                        Style="{StaticResource WindowButtonStyle}"
+                        Click="CloseButton_Click"/>
+
+                <!-- Formulario Login -->
+                <StackPanel Grid.Row="1"
+                          VerticalAlignment="Center"
+                          Width="300">
+                    <TextBlock Text="Iniciar Sesión"
+                             FontSize="24"
+                             FontWeight="Bold"
+                             Margin="0,0,0,30"
+                             HorizontalAlignment="Center"/>
+
+                    <!-- Usuario -->
+                    <TextBlock Text="Usuario"
+                             Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                             Height="45"
+                             Margin="0,0,0,20"/>
+
+                    <!-- Contraseña -->
+                    <TextBlock Text="Contraseña"
+                             Margin="0,0,0,5"/>
+                    <PasswordBox x:Name="passwordBox"
+                               Height="45"
+                               Margin="0,0,0,30"
+                               PasswordChanged="PasswordBox_PasswordChanged"/>
+
+                    <!-- Mensaje de Error -->
+                    <TextBlock Text="{Binding ErrorMessage}"
+                             Foreground="Red"
+                             TextWrapping="Wrap"
+                             Margin="0,0,0,20"
+                             HorizontalAlignment="Center"/>
+
+                    <!-- Botón Login -->
+                    <Button Content="Iniciar Sesión"
+                            Command="{Binding LoginCommand}"
+                            Background="#0D6EFD"
+                            Foreground="White"
+                            Height="45"
+                            Width="200"/>
+                </StackPanel>
+
+                <!-- Footer -->
+                <TextBlock Grid.Row="2"
+                         Text="© 2024 CellTech. Todos los derechos reservados."
+                         HorizontalAlignment="Center"
+                         Foreground="#6C757D"
+                         FontSize="12"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

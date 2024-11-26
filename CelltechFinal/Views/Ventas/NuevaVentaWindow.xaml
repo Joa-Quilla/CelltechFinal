@@ -1,0 +1,213 @@
+﻿<Window x:Class="CelltechFinal.Views.Ventas.NuevaVentaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CelltechFinal.Views.Ventas"
+        mc:Ignorable="d"
+        Title="Nueva Venta" 
+        Height="700" 
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="White">
+
+    <Border BorderBrush="#DEE2E6" 
+            BorderThickness="1" 
+            CornerRadius="10">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Título y botones de ventana -->
+            <Grid Grid.Row="0" Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Nueva Venta"
+                         FontSize="24"
+                         FontWeight="SemiBold"
+                         Foreground="#212529"/>
+
+                <StackPanel Grid.Column="1" 
+                          Orientation="Horizontal">
+                    <Button Style="{StaticResource WindowButtonStyle}"
+                            Click="MinimizeButton_Click">
+                        <TextBlock Text="—"/>
+                    </Button>
+                    <Button Style="{StaticResource WindowButtonStyle}"
+                            Click="CloseButton_Click">
+                        <TextBlock Text="✕"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!-- Panel de entrada de productos -->
+            <Grid Grid.Row="1" Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <TextBlock Text="Código de Producto"
+                             Foreground="#495057"
+                             FontWeight="Medium"
+                             Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtCodigoProducto"
+                             Text="{Binding CodigoProducto, UpdateSourceTrigger=PropertyChanged}"
+                             Height="35"
+                             Padding="10,0"
+                             VerticalContentAlignment="Center"
+                             PreviewKeyDown="TxtCodigoProducto_PreviewKeyDown"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10,0">
+                    <TextBlock Text="Cantidad"
+                             Foreground="#495057"
+                             FontWeight="Medium"
+                             Margin="0,0,0,5"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Text="{Binding Cantidad}"
+                                 Width="80"
+                                 Height="35"
+                                 Padding="10,0"
+                                 VerticalContentAlignment="Center"/>
+                        <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                            <Button Command="{Binding IncrementarCantidadCommand}"
+                                    Height="17"
+                                    Width="20"
+                                    Margin="0,0,0,1">
+                                <TextBlock Text="▲" FontSize="8"/>
+                            </Button>
+                            <Button Command="{Binding DecrementarCantidadCommand}"
+                                    Height="17"
+                                    Width="20">
+                                <TextBlock Text="▼" FontSize="8"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+
+                <Button Grid.Column="2"
+                        Command="{Binding AgregarProductoCommand}"
+                        Style="{StaticResource ActionButtonStyle}"
+                        Margin="10,25,0,0">
+                    <TextBlock Text="Agregar" Margin="10,0"/>
+                </Button>
+            </Grid>
+
+            <!-- Lista de productos -->
+            <DataGrid Grid.Row="2"
+                      ItemsSource="{Binding Detalles}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      Style="{StaticResource ModernDataGrid}"
+                      Margin="0,0,0,20">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Código" 
+                                      Binding="{Binding Codigo}" 
+                                      Width="120"/>
+                    <DataGridTextColumn Header="Producto" 
+                                      Binding="{Binding Nombre}" 
+                                      Width="*"/>
+                    <DataGridTextColumn Header="Cantidad" 
+                                      Binding="{Binding Cantidad}" 
+                                      Width="100"/>
+                    <DataGridTextColumn Header="Precio Unit." 
+                                      Binding="{Binding PrecioUnitario, StringFormat=C2}" 
+                                      Width="120"/>
+                    <DataGridTextColumn Header="Subtotal" 
+                                      Binding="{Binding Subtotal, StringFormat=C2}" 
+                                      Width="120"/>
+                    <DataGridTemplateColumn Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.QuitarProductoCommand, 
+                                        RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding}"
+                                        Style="{StaticResource GridButtonStyle}">
+                                    <TextBlock Text="✕" 
+                                             Foreground="#DC3545"
+                                             FontSize="16"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Panel inferior -->
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Método de Pago -->
+                <StackPanel Grid.Column="0" 
+                          Orientation="Vertical"
+                          Width="200">
+                    <TextBlock Text="Método de Pago"
+                             Foreground="#495057"
+                             FontWeight="Medium"
+                             Margin="0,0,0,5"/>
+                    <ComboBox ItemsSource="{Binding MetodosPago}"
+                             SelectedItem="{Binding MetodoPagoSeleccionado}"
+                             DisplayMemberPath="Nombre"
+                             Height="35"
+                             Margin="0,0,0,10"/>
+                </StackPanel>
+
+                <!-- Total -->
+                <StackPanel Grid.Column="1" 
+                          Orientation="Horizontal" 
+                          HorizontalAlignment="Right"
+                          VerticalAlignment="Bottom"
+                          Margin="0,0,20,0">
+                    <TextBlock Text="Total: "
+                             FontSize="24"
+                             FontWeight="SemiBold"
+                             Foreground="#212529"
+                             VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Total, StringFormat=C2}"
+                             FontSize="28"
+                             FontWeight="Bold"
+                             Foreground="#0D6EFD"
+                             VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Botones -->
+                <StackPanel Grid.Column="2" 
+                          Orientation="Horizontal"
+                          VerticalAlignment="Bottom">
+                    <Button Command="{Binding GuardarVentaCommand}"
+                            Style="{StaticResource ActionButtonStyle}"
+                            Background="#198754"
+                            Margin="0,0,10,0">
+                        <TextBlock Text="Guardar Venta" Margin="10,0"/>
+                    </Button>
+
+                    <Button Command="{Binding LimpiarVentaCommand}"
+                            Style="{StaticResource ActionButtonStyle}"
+                            Background="#DC3545">
+                        <TextBlock Text="Cancelar" Margin="10,0"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
