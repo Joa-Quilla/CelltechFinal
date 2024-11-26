@@ -11,7 +11,7 @@
         Background="Transparent">
 
     <Border Background="#ffffff"
-            CornerRadius="20">
+        CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -20,27 +20,166 @@
 
             <!-- Panel Izquierdo - Imagen/Logo -->
             <Border Grid.Column="0"
-                    Background="#0D6EFD"
-                    CornerRadius="20,0,0,20">
+                CornerRadius="20,0,0,20">
                 <Grid>
-                    <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="CELLTECH"
-                                 Foreground="White"
-                                 FontSize="36"
-                                 FontWeight="Bold"
-                                 HorizontalAlignment="Center"/>
-                        <TextBlock Text="Sistema de Ventas"
-                                 Foreground="White"
-                                 FontSize="16"
-                                 HorizontalAlignment="Center"
-                                 Margin="0,10,0,0"/>
-                    </StackPanel>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="0*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Panel Izquierdo - Imagen -->
+                    <Border CornerRadius="15,0,0,15">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <!-- Degradado profesional azul -->
+                                <GradientStop Color="#4361EE" Offset="0"/>
+                                <GradientStop Color="#3730A3" Offset="0.5"/>
+                                <GradientStop Color="#312E81" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Patrón de figuras geométricas -->
+                            <Canvas Grid.RowSpan="2">
+                                <!-- Círculos decorativos -->
+                                <Ellipse Width="114" Height="114" 
+                                      Fill="White" Opacity="0.03" 
+                                      Canvas.Left="20" Canvas.Top="20"/>
+                                <Ellipse Width="57" Height="54" 
+                                      Fill="White" Opacity="0.03" 
+                                      Canvas.Right="30" Canvas.Top="164" Canvas.Left="118"/>
+
+                                <!-- Cuadrados rotados -->
+                                <Rectangle Width="50" Height="50" 
+                                       Fill="White" Opacity="0.03" 
+                                       RenderTransformOrigin="0.5,0.5" 
+                                       Canvas.Left="250" Canvas.Top="150">
+                                    <Rectangle.RenderTransform>
+                                        <RotateTransform Angle="45"/>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+
+                                <!-- Triángulos -->
+                                <Path Fill="White" Opacity="0.03" 
+                                   Data="M 0,30 L 30,30 L 15,0 Z" 
+                                   Canvas.Left="-77.941" 
+                                  Canvas.Bottom="80" 
+                                  Height="217" Stretch="Fill" 
+                                  Canvas.Top="282.243" Width="298" RenderTransformOrigin="0.5,0.5">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="16.432"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+
+                                <!-- Hexágonos -->
+                                <Path Fill="White" Opacity="0.05" 
+                                  Data="M 25,0 L 50,14.43 L 50,43.3 L 25,57.73 L 0,43.3 L 0,14.43 Z" 
+                                  Canvas.Right="50" 
+                                  Canvas.Bottom="100" Height="211" 
+                                  Canvas.Left="167.5" 
+                                  Stretch="Fill" 
+                                  Canvas.Top="318.77" 
+                                  Width="179" 
+                                  RenderTransformOrigin="0.5,0.5" 
+                                  HorizontalAlignment="Center" 
+                                  VerticalAlignment="Top">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="-33.726"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+                                <Path Fill="White" Opacity="0.05" 
+             Data="M 25,0 L 50,14.43 L 50,43.3 L 25,57.73 L 0,43.3 L 0,14.43 Z" 
+             Canvas.Right="50" Canvas.Bottom="100" Height="100" Canvas.Left="-13.24" Stretch="Fill" Canvas.Top="198.49" Width="92" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="-33.726"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Canvas>
+
+                            <!-- Contenido principal -->
+                            <StackPanel VerticalAlignment="Center">
+                                <Image Source="C:\Users\del58\source\repos\CELLTECH_COM\CELLTECH_COM\Resources\Imagenes\android.png"
+    Height="202" Width="312"
+    RenderOptions.BitmapScalingMode="HighQuality">
+                                    <Image.Effect>
+                                        <DropShadowEffect Color="White" 
+                     BlurRadius="15" 
+                     ShadowDepth="0" 
+                     Opacity="0.3"/>
+                                    </Image.Effect>
+                                </Image>
+
+                                <TextBlock Text="CELLTECH.COM"
+      Foreground="White"
+      FontSize="24"
+      FontWeight="Bold"
+      HorizontalAlignment="Center"
+      Margin="0,20,0,0">
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect Color="White" 
+                     BlurRadius="10" 
+                     ShadowDepth="0" 
+                     Opacity="0.3"/>
+                                    </TextBlock.Effect>
+                                </TextBlock>
+
+                                <TextBlock Text="Sistema de Gestión"
+      Foreground="White"
+      FontSize="16"
+      HorizontalAlignment="Center"
+      Margin="0,5,0,0"/>
+                            </StackPanel>
+
+                            <!-- Versión con efecto hover -->
+                            <TextBlock Text="v1.0.0"
+  Grid.Row="1"
+  Foreground="White"
+  Margin="20,0,0,20">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Effect">
+                                                    <Setter.Value>
+                                                        <DropShadowEffect Color="White" 
+                                     BlurRadius="10" 
+                                     ShadowDepth="0" 
+                                     Opacity="0.5"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+
                 </Grid>
             </Border>
 
             <!-- Panel Derecho - Login -->
             <Grid Grid.Column="1"
-                  Margin="30">
+              Margin="30,10,30,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -49,60 +188,58 @@
 
                 <!-- Botón Cerrar -->
                 <Button Content="✕"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        Width="30"
-                        Height="30"
-                        Style="{StaticResource WindowButtonStyle}"
-                        Click="CloseButton_Click"/>
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Width="30"
+                    Height="30"
+                    Style="{StaticResource WindowButtonStyle}"
+                    Click="CloseButton_Click"/>
 
                 <!-- Formulario Login -->
                 <StackPanel Grid.Row="1"
-                          VerticalAlignment="Center"
-                          Width="300">
+                      VerticalAlignment="Center"
+                      Width="300">
                     <TextBlock Text="Iniciar Sesión"
-                             FontSize="24"
-                             FontWeight="Bold"
-                             Margin="0,0,0,30"
-                             HorizontalAlignment="Center"/>
+                         FontSize="24"
+                         FontWeight="Bold"
+                         Margin="0,0,0,30"
+                         HorizontalAlignment="Center"/>
 
                     <!-- Usuario -->
                     <TextBlock Text="Usuario"
-                             Margin="0,0,0,5"/>
+                         Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
-                             Height="45"
-                             Margin="0,0,0,20"/>
+                         Style="{StaticResource ModernTextBoxLogin}"
+                         Height="45"
+                         Margin="0,0,0,20"/>
 
                     <!-- Contraseña -->
                     <TextBlock Text="Contraseña"
-                             Margin="0,0,0,5"/>
+                         Margin="0,0,0,5"/>
                     <PasswordBox x:Name="passwordBox"
-                               Height="45"
-                               Margin="0,0,0,30"
-                               PasswordChanged="PasswordBox_PasswordChanged"/>
+                             Style= "{StaticResource ModernPasswordBoxLogin}"
+                             Margin="0,0,0,30"
+                           PasswordChanged="PasswordBox_PasswordChanged"/>
 
                     <!-- Mensaje de Error -->
                     <TextBlock Text="{Binding ErrorMessage}"
-                             Foreground="Red"
-                             TextWrapping="Wrap"
-                             Margin="0,0,0,20"
-                             HorizontalAlignment="Center"/>
+                         Foreground="Red"
+                         TextWrapping="Wrap"
+                         Margin="0,0,0,20"
+                         HorizontalAlignment="Center"/>
 
                     <!-- Botón Login -->
                     <Button Content="Iniciar Sesión"
-                            Command="{Binding LoginCommand}"
-                            Background="#0D6EFD"
-                            Foreground="White"
-                            Height="45"
-                            Width="200"/>
+                        Style= "{StaticResource PrimaryButtonLogin}"
+                        Command="{Binding LoginCommand}"/>
                 </StackPanel>
 
                 <!-- Footer -->
                 <TextBlock Grid.Row="2"
-                         Text="© 2024 CellTech. Todos los derechos reservados."
-                         HorizontalAlignment="Center"
-                         Foreground="#6C757D"
-                         FontSize="12"/>
+                     Text="© 2024 CellTech. Todos los derechos reservados."
+                     HorizontalAlignment="Center"
+                     Foreground="#6C757D"
+                     FontSize="12"/>
             </Grid>
         </Grid>
     </Border>
