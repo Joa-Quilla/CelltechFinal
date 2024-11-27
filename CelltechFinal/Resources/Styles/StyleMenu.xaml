@@ -1,0 +1,239 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Estilo para los botones de ventana MAXIMIZAR,MINIMIZAR,ETC-->
+    <Style x:Key="WindowButtonStyle" TargetType="Button">
+        <Setter Property="Width" Value="46"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#404040"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Colores del sistema -->
+    <Color x:Key="VentasColor">#0D6EFD</Color>
+    <!-- Azul -->
+    <Color x:Key="InventarioColor">#198754</Color>
+    <!-- Verde -->
+    <Color x:Key="ClientesColor">#0DCAF0</Color>
+    <!-- Celeste -->
+    <Color x:Key="ReportesColor">#FFC107</Color>
+    <!-- Amarillo -->
+    <Color x:Key="ConfiguracionColor">#6C757D</Color>
+    <!-- Gris -->
+
+    <!-- Convertir colores a Brushes -->
+    <SolidColorBrush x:Key="VentasBrush" Color="{StaticResource VentasColor}"/>
+    <SolidColorBrush x:Key="InventarioBrush" Color="{StaticResource InventarioColor}"/>
+    <SolidColorBrush x:Key="ClientesBrush" Color="{StaticResource ClientesColor}"/>
+    <SolidColorBrush x:Key="ReportesBrush" Color="{StaticResource ReportesColor}"/>
+    <SolidColorBrush x:Key="ConfiguracionBrush" Color="{StaticResource ConfiguracionColor}"/>
+
+
+    <!-- Estilo para la Tarjeta gestion de inventario -->
+
+    <!-- Estilo base para las tarjetas -->
+    <Style x:Key="MenuCardAnimadoStyle" TargetType="Border">
+        <Setter Property="Width" Value="300"/>
+        <Setter Property="Height" Value="230"/>
+        <Setter Property="Margin" Value="15"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#DEE2E6"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect ShadowDepth="0" 
+                             BlurRadius="20"         
+                             Opacity="0.3"
+                             Color="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Margin" Value="15,10,15,20"/>
+                <Setter Property="BorderBrush" Value="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Estilo base para los íconos -->
+    <Style x:Key="IconStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="48"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,20,0,10"/>
+        <Setter Property="Foreground" Value="{Binding Tag}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="#0D6EFD" 
+                                 BlurRadius="25" 
+                                 ShadowDepth="0" 
+                                 Opacity="0.7"/>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <!-- Estilo para los títulos -->
+    <Style x:Key="CardTitleStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,0,10"/>
+        <Setter Property="Foreground" Value="#212529"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="#0D6EFD" 
+                                 BlurRadius="10" 
+                                 ShadowDepth="0" 
+                                 Opacity="0.2"/>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <!-- Estilo para el texto de las tarjetas -->
+    <Style x:Key="CardTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Margin" Value="20,0,20,15"/>
+        <Setter Property="Foreground" Value="#6C757D"/>
+    </Style>
+    <!-- Estilo actualizado para el botón -->
+    <Style x:Key="CardButtonStyle" TargetType="Button">
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" 
+                     Background="{TemplateBinding Background}"
+                     CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                 VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="#0D6EFD" 
+                                             BlurRadius="15" 
+                                             ShadowDepth="0" 
+                                             Opacity="0.5"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Opacity" Value="0.9"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
+                            <Setter TargetName="border" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="#0D6EFD" 
+                                             BlurRadius="15" 
+                                             ShadowDepth="0" 
+                                             Opacity="0.5"/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+
+    </Style>
+
+
+
+    <Style x:Key="MenubtonAnimadoStyle" TargetType="Button">
+        <Setter Property="Width" Value="300"/>
+        <Setter Property="Height" Value="230"/>
+        <Setter Property="Margin" Value="15"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#DEE2E6"/>
+
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect ShadowDepth="0" 
+                          BlurRadius="20"         
+                          Opacity="0.3"
+                          Color="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Margin" Value="15,10,15,20"/>
+                <Setter Property="BorderBrush" Value="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="menButtonStyle" TargetType="Button">
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" 
+                  Background="{TemplateBinding Background}"
+                  CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" 
+                              VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="#000000" 
+                                          BlurRadius="15" 
+                                          ShadowDepth="0" 
+                                          Opacity="0.4"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Opacity" Value="0.9"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

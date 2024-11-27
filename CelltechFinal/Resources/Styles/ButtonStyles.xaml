@@ -181,4 +181,10 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!-- Efectos -->
+    <DropShadowEffect x:Key="Z1" 
+               BlurRadius="10" 
+               ShadowDepth="0" 
+               Opacity="0.35"/>
 </ResourceDictionary>
