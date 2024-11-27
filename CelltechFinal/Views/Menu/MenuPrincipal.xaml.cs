@@ -80,8 +80,12 @@ namespace CelltechFinal.Views.Menu
         }
 
 
+
         #endregion
 
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
